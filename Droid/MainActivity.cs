@@ -1,29 +1,34 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Android.Views;
 
 using ObservableTables.ViewModel;
 
 using GalaSoft.MvvmLight.Helpers;
+using XamarinItemTouchHelper;
+using Android.Support.V7.Widget.Helper;
+using Android.Support.V7.Widget;
 
 namespace ObservableTables.Droid
 {
 	[Activity (Label = "Tasks", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@mipmap/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : Activity, IOnStartDragListener
 	{
-		private ListView taskList;
+        private ItemTouchHelper itemTouchHelper;
 
-		private Button addTaskButton;
+        private RecyclerView taskRecyclerView;
 
-		public ListView TaskList
-		{
-			get
-			{
-				return taskList
-					?? (taskList = FindViewById<ListView>(Resource.Id.tasksListView));
-			}
-		}
+        private Button addTaskButton;
+
+        public RecyclerView TaskRecyclerView
+        {
+            get
+            {
+                return taskRecyclerView ??
+                  (taskRecyclerView = FindViewById<RecyclerView>(
+                        Resource.Id.tasksRecyclerView));
+            }
+        }
 
 		public Button AddTaskButton
 		{
@@ -54,30 +59,31 @@ namespace ObservableTables.Droid
 			SetActionBar (toolbar);
 
 			Vm.Initialize ();
-			TaskList.Adapter = Vm.TodoTasks.GetAdapter(GetTaskAdapter);
+			
+            TaskListAdapter adapter = new TaskListAdapter(this);
 
-			//ensure that the Event will be present
-			AddTaskButton.Click += (sender, e) => {};
+            TaskRecyclerView.HasFixedSize = true;
+            TaskRecyclerView.SetAdapter(adapter);
+
+            TaskRecyclerView.SetLayoutManager(new LinearLayoutManager(this,
+                                              LinearLayoutManager.Vertical, false));
+            
+            ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+            itemTouchHelper = new ItemTouchHelper(callback);
+            itemTouchHelper.AttachToRecyclerView(TaskRecyclerView);
+
+            //ensure that the Event will be present
+            AddTaskButton.Click += (sender, e) => {};
 
 			// Actuate the AddTaskCommand on the VM.
-			AddTaskButton.SetCommand(
-				"Click",
-				Vm.AddTaskCommand);
+			AddTaskButton.SetCommand("Click",
+				                    Vm.AddTaskCommand);
 		}
 
-		private View GetTaskAdapter(int position, TaskModel taskModel, View convertView)
-		{
-			// Not reusing views here
-			convertView = LayoutInflater.Inflate(Resource.Layout.TaskTemplate, null);
-
-			var title = convertView.FindViewById<TextView>(Resource.Id.NameTextView);
-			title.Text = taskModel.Name;
-
-			var desc = convertView.FindViewById<TextView>(Resource.Id.NotesTextView);
-			desc.Text = taskModel.Notes;
-
-			return convertView;
-		}
+        public void OnStartDrag(RecyclerView.ViewHolder viewHolder)
+        {
+            itemTouchHelper.StartDrag(viewHolder);
+        }
 	}
 }
 
