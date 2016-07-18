@@ -42,7 +42,9 @@ namespace ObservableTables.Droid
             taskHolder.NameTextView.Text = task.Name;
             taskHolder.NotesTextView.Text = task.Notes;
             
-            taskHolder.NameTextView.SetOnTouchListener(new TouchListenerHelper(taskHolder, dragStartListener));
+            //taskHolder.NameTextView.SetOnTouchListener(new TouchListenerHelper(taskHolder, dragStartListener));
+
+            taskHolder.HandleView.SetOnTouchListener(new TouchListenerHelper(taskHolder, dragStartListener));
         }
 
         public void OnItemDismiss(int position)

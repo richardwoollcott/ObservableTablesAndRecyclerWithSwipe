@@ -88,6 +88,10 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\TaskTemplate.axml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_reorder_grey_500_24dp.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_reorder_grey_500_24dp.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_reorder_grey_500_24dp.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_reorder_grey_500_24dp.png" />
   </ItemGroup>
   <Import Project="..\ObservableTables\ObservableTables.projitems" Label="Shared" Condition="Exists('..\ObservableTables\ObservableTables.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -1,25 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TaskTemplateRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/TaskTemplateRoot">
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="#ffffffff">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:id="@+id/NameTextView" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:id="@+id/NotesTextView"
-        android:ellipsize="end"
-        android:singleLine="true" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true">
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/NameTextView"
+            android:text="Name goes here" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/NotesTextView"
+            android:text="Notes / description goes here"
+            android:ellipsize="end"
+            android:singleLine="true" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/Handle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|right"
+        android:scaleType="center"
+        android:src="@mipmap/ic_reorder_grey_500_24dp"
+        android:layout_alignParentRight="true"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:padding="8dp" />
+</RelativeLayout>

@@ -14,6 +14,9 @@ namespace ObservableTables.Droid
     {
         public TextView NameTextView { get; set;}
         public TextView NotesTextView { get; set; }
+
+        public ImageView HandleView { get; set; }
+
         public View itemView;
 
         public TaskViewHolder(View itemView) : base(itemView)
@@ -21,6 +24,7 @@ namespace ObservableTables.Droid
             this.itemView = itemView;
             NameTextView = itemView.FindViewById<TextView>(Resource.Id.NameTextView);
             NotesTextView = itemView.FindViewById<TextView>(Resource.Id.NotesTextView);
+            HandleView = itemView.FindViewById<ImageView>(Resource.Id.Handle);
         }
 
         public void OnItemSelected()

@@ -78,6 +78,9 @@ namespace ObservableTables.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050007
+			public const int Handle = 2131034119;
+			
 			// aapt resource value: 0x7f050005
 			public const int NameTextView = 2131034117;
 			
@@ -132,7 +135,10 @@ namespace ObservableTables.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int ic_reorder_grey_500_24dp = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Icon = 2130837505;
 			
 			static Mipmap()
 			{
